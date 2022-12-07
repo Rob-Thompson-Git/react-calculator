@@ -1,41 +1,105 @@
 import React, { useReducer } from 'react';
 import "./styles.css";
+import DigitButton from './DigitButton';
+import OperationButton from './OperationButton';
 
-const ACTIONS = {
+//calc actions
+export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
+  CHOOSE_OPERATION: 'choose-operation',
   CLEAR: 'clear',
+  DELETE_DIGIT: 'delete-digit',
+  EVALUATE: 'evaluate'
 }
 
-function reducer(state, action) {
+function reducer(state, {type, payload}) {
+  switch(type) {
+    case ACTIONS.ADD_DIGIT:
+      if(payload.digit === "0" && state.currentOperand === "0") {
+        return state
+      }
+      if(payload.digit === "." && state.currentOperand.includes(".")) {
+        return state
+      }
 
+      return {
+        ...state,
+        currentOperand: `${state.currentOperand || ""}${payload.digit}`,
+    }
+
+    case ACTIONS.CHOOSE_OPERATION:
+      if (state.currentOperand == null && state.previousOperand == null) {
+        return state
+      }
+
+      if (state.previousOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+          previousOperand: state.currentOperand,
+          currentOperand: null,
+        }
+      }
+    return {
+      ...state,
+      previousOperand: evaluate(state),
+      operation: payload.operation,
+      currentOperand: null
+    }
+    case ACTIONS.CLEAR:
+      return {}
+  }
+}
+
+function evaluate({ currentOperand, previousOperand, operation}) {
+  const prev = parseFloat(previousOperand)
+  const current = parseFloat(currentOperand)
+  if (isNaN(prev) || isNaN(current)) return ''
+  let computation = ''
+  switch (operation) {
+    case "+":
+      computation = prev + current
+      break
+    case "-":
+      computation = prev - current
+      break
+    case "x":
+      computation = prev * current
+      break
+    case "/":
+      computation = prev / current
+      break
+  }
+  return computation.toString()
 }
 
 function App() {
   const [{currentOperand, previousOperand, operation}, dispatch] = useReducer(reducer, {})
+
   return (
   <div className="calc-grid">
     <div className="output">
       <div className="prev-operand">{previousOperand} {operation}</div>
       <div className="current-operand">{currentOperand}</div>
     </div>
-    <button id="btn-C">C</button>
-    <button id="btn-neg">+-</button>
-    <button id="btn-per">%</button>
-    <button id="btn-div">/</button>
-    <button id="btn-7">7</button>
-    <button id="btn-8">8</button>
-    <button id="btn-9">9</button>
-    <button id="btn-x">x</button>
-    <button id="btn-4">4</button>
-    <button id="btn-5">5</button>
-    <button id="btn-6">6</button>
-    <button id="btn-min">-</button>
-    <button id="btn-1">1</button>
-    <button id="btn-2">2</button>
-    <button id="btn-3">3</button>
-    <button id="btn-add">+</button>
-    <button id="btn-0">0</button>
-    <button id="btn-dec">.</button>
+    <button id="btn-C" onClick={() => dispatch({ type: ACTIONS.CLEAR})}>C</button>
+    <DigitButton digit="+-" dispatch={dispatch}/>
+    <DigitButton digit="%" dispatch={dispatch}/>
+    <OperationButton operation="/" dispatch={dispatch}/>
+    <DigitButton digit="7" dispatch={dispatch}/>
+    <DigitButton digit="8" dispatch={dispatch}/>
+    <DigitButton digit="9" dispatch={dispatch}/>
+    <OperationButton operation="x" dispatch={dispatch}/>
+    <DigitButton digit="4" dispatch={dispatch}/>
+    <DigitButton digit="5" dispatch={dispatch}/>
+    <DigitButton digit="6" dispatch={dispatch}/>
+    <OperationButton operation="-" dispatch={dispatch}/>
+    <DigitButton digit="1" dispatch={dispatch}/>
+    <DigitButton digit="2" dispatch={dispatch}/>
+    <DigitButton digit="3" dispatch={dispatch}/>
+    <OperationButton operation="+" dispatch={dispatch}/>
+    <DigitButton digit="0" dispatch={dispatch}/>
+    <DigitButton digit="." dispatch={dispatch}/>
     <button id="btn-equal">=</button>
   </div>
   )
