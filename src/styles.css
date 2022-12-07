@@ -44,6 +44,35 @@ body {
 .output {
     grid-area: screen;
     border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0.25rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.prev-operand {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.25rem;
+}
+
+.current-operand {
+    color: violet;
+    font-size: 1.75rem;
+}
+
+.calc-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid black;
+    outline: none;
+}
+
+.calc-grid > button:hover,
+.calc-grid > button:focus {
+    background-color:darkmagenta;
 }
 
 button {
