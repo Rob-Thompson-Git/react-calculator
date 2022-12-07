@@ -1,0 +1,154 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    /* text-align: center; */
+    background: linear-gradient(to right, teal, green);
+}
+
+.calc-cont {
+    width: 300px;
+    height: 500px;
+    background-color: black;
+    /* margin-top: 7rem; */
+    /* position: relative;
+    /* align-content: center; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    
+}
+
+.calc-grid {
+    display: grid;
+    height: 500px;
+    /* width: 100%; */
+    /* margin-top: 7rem; */
+    grid-template-columns: 1fr, 1fr, 1fr, 1fr;
+    grid-template-rows: 200px, 1fr, 0.5fr, 0.5fr, 0.5fr, 0.5fr;
+    grid-template-areas: 
+    'screen screen screen screen'
+    'C neg per div'
+    'sev eight nine mult'
+    'four five six min'
+    'one two three add'
+    'zero dec equal equal';
+    grid-gap: 5px;
+    padding: 5px;
+}
+
+.output {
+    grid-area: screen;
+    border: 1px solid grey;
+}
+
+button {
+    border-radius: 10px;
+    background-color: blueviolet;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: whitesmoke;
+    /* align-self: end; */
+}
+
+#btn-C {
+    grid-area: C;
+}
+
+#btn-neg {
+    grid-area: neg;
+}
+
+#btn-per {
+    grid-area: per;
+}
+
+#btn-div {
+    grid-area: div;
+}
+
+#btn-7 {
+    grid-area: sev;
+}
+
+#btn-8 {
+    grid-area: eight;
+}
+
+#btn-9 {
+    grid-area: nine;
+}
+
+#btn-x {
+    grid-area: mult;
+}
+
+#btn-4 {
+    grid-area: four;
+}
+
+#btn-5 {
+    grid-area: five;
+}
+
+#btn-6 {
+    grid-area: six;
+}
+
+#btn-min {
+    grid-area: min;
+}
+
+#btn-1 {
+    grid-area: one;
+}
+
+#btn-2 {
+    grid-area: two;
+}
+
+#btn-3 {
+    grid-area: three;
+}
+
+#btn-add {
+    grid-area: add;
+    
+}
+
+#btn-0 {
+    grid-area: zero;
+   
+}
+
+#btn-dec {
+    grid-area: dec;
+   
+}
+
+#btn-equal {
+    grid-area: equal;
+    background-color: brown;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
