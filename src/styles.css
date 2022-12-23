@@ -6,7 +6,6 @@ body {
     margin: 0;
     height: 100vh;
     width: 100vw;
-    /* text-align: center; */
     background: linear-gradient(to right, teal, green);
 }
 
@@ -14,13 +13,9 @@ body {
     width: 300px;
     height: 500px;
     background-color: black;
-    /* margin-top: 7rem; */
-    /* position: relative;
-    /* align-content: center; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
-    
 }
 
 .calc-grid {
@@ -32,7 +27,7 @@ body {
     grid-template-rows: 200px, 1fr, 0.5fr, 0.5fr, 0.5fr, 0.5fr;
     grid-template-areas: 
     'screen screen screen screen'
-    'C neg per div'
+    'C C del div'
     'sev eight nine mult'
     'four five six min'
     'one two three add'
@@ -51,6 +46,7 @@ body {
     padding: 0.25rem;
     word-wrap: break-word;
     word-break: break-all;
+    height: 100px;
 }
 
 .prev-operand {
@@ -66,7 +62,6 @@ body {
 .calc-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid black;
     outline: none;
 }
 
@@ -82,19 +77,14 @@ button {
     font-weight: bold;
     font-size: 20px;
     color: whitesmoke;
-    /* align-self: end; */
 }
 
 #btn-C {
     grid-area: C;
 }
 
-#btn-neg {
-    grid-area: neg;
-}
-
-#btn-per {
-    grid-area: per;
+#btn-del {
+    grid-area: del;
 }
 
 #btn-div {
