@@ -7,7 +7,7 @@ Deployed Live Link: https://rob-thompson-git.github.io/react-calculator/
 
 # Description
 
-This is a front end application utlizing useRedcuer and state functions inside of React to create a simple calculator. Please see the delpoyment link in the README to check it out.
+This is a front end, calculator application utlizing reducer and state functions inside of React. Please see the delpoyment link in the README to check it out.
 
 # Table of Contents 
 * [Screenshot](#screenshot)
